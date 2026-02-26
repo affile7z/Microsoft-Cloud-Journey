@@ -1,7 +1,7 @@
 $RGName = "RG-Lab-Qatar-01"
 $Location = "qatarcentral"
 $Tags = @{
-    Owner       = "Bogdan"
+    Owner       = "affile7z"
     Project     = "Cloud-Security-Lab"
     Environment = "Dev"
 }
