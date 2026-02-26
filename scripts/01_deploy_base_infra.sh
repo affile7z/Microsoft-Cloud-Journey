@@ -1,22 +1,15 @@
-#!/bin/bash
+$RGName = "RG-Lab-Qatar-01"
+$Location = "qatarcentral"
+$Tags = @{
+    Owner       = "Bogdan"
+    Project     = "Cloud-Security-Lab"
+    Environment = "Dev"
+}
 
-# Variables
-RESOURCE_GROUP="RG-Lab-Qatar-01"
-LOCATION="qatarcentral"
+Connect-AzAccount
 
-# Authentication
-echo "Starting Azure Authentication..."
-az login
+Write-Host "Deploying Resource Group..." -ForegroundColor Cyan
+New-AzResourceGroup -Name $RGName -Location $Location -Tag $Tags
 
-# Infrastructure Deployment
-echo "Creating Resource Group: $RESOURCE_GROUP..."
-az group create --name $RESOURCE_GROUP --location $LOCATION \
-    --tags \
-    Project="Cloud-Security-Lab" \
-    Owner="Bogdan" \
-    Environment="Dev" \
-    Certification="AZ104-SC200"
-
-# Verification
-echo "Deployment Validation:"
-az group show --name $RESOURCE_GROUP --output table
+Write-Host "Deployment Summary:" -ForegroundColor Green
+Get-AzResourceGroup -Name $RGName | Select-Object ResourceGroupName, Location, ProvisioningState
